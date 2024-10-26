@@ -1,0 +1,34 @@
+name: 'Rotate Temporal Cloud Service Account ApiKey'
+author: 'Abhinav Nekkanti'
+description: Github action that rotates the temporal cloud service account apikey and updates github secret
+inputs:
+  apikey:
+    description: "The apikey to use to create a new apikey. Can be the same as the one to rotate."
+    required: true
+  serviceAccountId:
+    description: "The service account id to rotate the apikey for."
+    required: true
+  apikeyNamePrefix:
+    description: "The prefix to use for the new apikey name. The new apikey name will be <apikeyNamePrefix>-<timestamp>"
+    required: true
+  duration:
+    description: "The number of days for which the new apikey should be valid. Default is 30 days."
+    default: 30
+  description:
+    description: "The description to use for the new apikey. Default is 'Rotated by Github Action'."
+    default: "Rotated by Github Action"
+  deleteOldApikeys:
+    description: "Whether to delete the old apikey after creating the new one. The old apikeys will be identified by the prefix. Default is false."
+    default: false
+  personalAccessToken:
+    description: "Github token that can update secrets in the repos."
+    required: true
+  repositories:
+    description: "List of repositories, separated by comma, to install secrets in."
+    required: true
+  secretName:
+    description: "Name of the GH secret to update."
+    required: true
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
