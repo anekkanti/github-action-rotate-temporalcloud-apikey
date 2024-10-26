@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: rotate gcp keys
-        uses: anekkanti/github-action-rotate-temporalcloud-apikey
+        uses: anekkanti/github-action-rotate-temporalcloud-apikey@main
         with:
           apikey: "${{ secrets.TEMPORAL_CLOUD_API_KEY }}"
           serviceAccount: "${{ secrets.TEMPORAL_CLOUD_SERVICE_ACCOUNT_ID }}"
