@@ -3,6 +3,7 @@ import os
 import asyncio
 import datetime
 import tmprl
+import gh
 
 
 apikey = os.environ["INPUT_APIKEY"]
