@@ -9,7 +9,7 @@ jobs:
         uses: anekkanti/github-action-rotate-temporalcloud-apikey@main
         with:
           apikey: "${{ secrets.TEMPORAL_CLOUD_API_KEY }}"
-          serviceAccount: "${{ secrets.TEMPORAL_CLOUD_SERVICE_ACCOUNT_ID }}"
+          serviceAccountId: "${{ secrets.TEMPORAL_CLOUD_SERVICE_ACCOUNT_ID }}"
           apikeyNamePrefix: "rotate-temporalcloud-apikey-ci"
           duration: 2
           description: "Apikey used for CI/CD in {{ github.repository }}"
