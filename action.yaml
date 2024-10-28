@@ -16,7 +16,7 @@ inputs:
     default: 30
   description:
     description: "The description to use for the new apikey. Default is 'Rotated by Github Action'."
-    default: "Api key created by Github Action for {{ github.repository }}"
+    default: "Created by Github Action anekkanti/github-action-rotate-temporalcloud-apikey"
   deleteOldApikeys:
     description: "Whether to delete the old apikey after creating the new one. The old apikeys will be identified by the prefix. Default is false."
     default: false
