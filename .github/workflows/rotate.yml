@@ -1,5 +1,5 @@
 name: Rotate Temporal Cloud API Key
-on: [push]
+on: [workflow_dispatch]
 jobs:
   rotate:
     name: Rotate Temporal Cloud API Key
