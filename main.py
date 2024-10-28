@@ -3,6 +3,7 @@ import os
 import asyncio
 import datetime
 import tmprl
+from gh import update_gh_secret
 
 
 apikey = os.environ["INPUT_APIKEY"]
@@ -13,7 +14,7 @@ duration = os.environ["INPUT_DURATION"]
 description = os.environ["INPUT_DESCRIPTION"]
 gh_token = os.environ["INPUT_PERSONALACCESSTOKEN"]
 secret_name = os.environ["INPUT_SECRETNAME"]
-owner_repository = os.environ["INPUT_REPOSITORIES"]
+owner_repositories = os.environ["INPUT_REPOSITORIES"]
 
 logging.basicConfig(format='%(levelname)s %(message)s', level=logging.INFO)
 
@@ -28,9 +29,9 @@ async def main():
     logging.info(f"Created a new API Key: {ak.spec.display_name}({ak.id})")
 
     # update secrets in all repos
-    for repo in [x.strip() for x in owner_repository.split(',')]:
-        gh.update_gh_secret(repo, secret_name, new_key_base64, gh_token)
-        logging.info("Updated gh secret in {}".format(repo))
+    for repo in [x.strip() for x in owner_repositories.split(',')]:
+        update_gh_secret(repo, secret_name, token, gh_token)
+        logging.info("Updated gh secret {} in {}".format(secret_name, repo))
 
     # delete old apikeys
     if delete_old_apikeys.casefold() == "true":
@@ -39,6 +40,7 @@ async def main():
             if k.spec.display_name.startswith(apikey_name_prefix+"-") and k.id != ak.id:
                 await tmprl.delete_apikey(client, k.id, k.resource_version)
                 logging.info(f"Deleted old API Key: {k.spec.display_name}({k.id})")
+
 
 if __name__ == "__main__":
     asyncio.run(main())
