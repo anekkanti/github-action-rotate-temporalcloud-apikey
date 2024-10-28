@@ -3,7 +3,7 @@ import os
 import asyncio
 import datetime
 import tmprl
-import gh
+from gh import update_gh_secret
 
 
 apikey = os.environ["INPUT_APIKEY"]
@@ -30,7 +30,7 @@ async def main():
 
     # update secrets in all repos
     for repo in [x.strip() for x in owner_repositories.split(',')]:
-        gh.update_gh_secret(repo, secret_name, token, gh_token)
+        update_gh_secret(repo, secret_name, token, gh_token)
         logging.info("Updated gh secret {} in {}".format(secret_name, repo))
 
     # delete old apikeys
