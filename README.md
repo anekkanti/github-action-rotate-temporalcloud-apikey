@@ -1,6 +1,6 @@
 # github-action-rotate-temporalcloud-apikey
 
-Github Action to rotate Temporal Cloud api keys
+Github Action to rotate Temporal Cloud api keys.
 
 ## Example usage
 ```yaml
@@ -11,7 +11,7 @@ jobs:
     name: Rotate Temporal Cloud API Key
     runs-on: ubuntu-latest
     steps:
-      - name: rotate gcp keys
+      - name: rotate temporal cloud api key
         uses: anekkanti/github-action-rotate-temporalcloud-apikey@main
         with:
           apikey: "${{ secrets.TEMPORAL_CLOUD_API_KEY }}"
